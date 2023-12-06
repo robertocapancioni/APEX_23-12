@@ -21,3 +21,13 @@ select A.PROGETTO,
 select A.*
   from D02_ATTIVITA A
  where PROGETTO = 'Sito Web pubblico'
+
+select A.*
+  from D02_ATTIVITA A
+ where ATTIVITA like 'Co%'
+select A.*
+  from D02_ATTIVITA A
+ where ATTIVITA like '%to'
+select A.*
+  from D02_ATTIVITA A
+ where ATTIVITA like '%comp%'
