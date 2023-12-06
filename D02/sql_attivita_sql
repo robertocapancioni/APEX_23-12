@@ -43,3 +43,9 @@ select A.*
 update d02_attivita 
    set budget = null , costo = 100
  where id = 1
+
+
+ select A.*
+  from D02_ATTIVITA A
+ where BUDGET = 500
+
