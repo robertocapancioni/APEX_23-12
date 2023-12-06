@@ -68,3 +68,7 @@ select A.*
  where coalesce(BUDGET,0) <> 500
    and id = 1
 
+select A.*
+  from D02_ATTIVITA A
+ where coalesce(BUDGET,0) <> 500
+   and id = 1
