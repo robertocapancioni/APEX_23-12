@@ -31,3 +31,11 @@ select A.*
 select A.*
   from D02_ATTIVITA A
  where ATTIVITA like '%comp%'
+
+select A.*
+  from D02_ATTIVITA A
+ where BUDGET is null
+
+select A.*
+  from D02_ATTIVITA A
+ where BUDGET is not null
