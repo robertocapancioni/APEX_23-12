@@ -108,3 +108,8 @@ order by BUDGET ASC NULLS FIRST
 select A.*
     from D02_ATTIVITA A
 order by BUDGET ASC NULLS LAST
+
+select A.*
+    from D02_ATTIVITA A
+order by BUDGET
+   fetch first 5 rows only
