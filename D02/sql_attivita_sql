@@ -133,3 +133,15 @@ select
  order by BUDGET DESC NULLS LAST
 offset 2 rows --salta 2 righe
  fetch next 5 rows only
+
+  select A.*
+    from D02_ATTIVITA A -- io sono un commento a riga singola
+order by PROGETTO ASC
+
+select A.*
+      /*
+         Io sono un commnento
+         Multiriga
+      */
+    from D02_ATTIVITA A
+order by PROGETTO DESC
