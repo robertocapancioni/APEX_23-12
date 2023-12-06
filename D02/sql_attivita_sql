@@ -49,3 +49,7 @@ update d02_attivita
   from D02_ATTIVITA A
  where BUDGET = 500
 
+select A.*
+  from D02_ATTIVITA A
+ where BUDGET <> 500
+
