@@ -1,1 +1,11 @@
 
+select ID,
+       PROGETTO,
+       ATTIVITA,
+       DATA_INIZIO,
+       DATA_FINE,
+       STATO,
+       ASSEGNATO_A,
+       COSTO,
+       BUDGET
+  from D02_ATTIVITA
