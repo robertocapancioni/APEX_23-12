@@ -101,3 +101,10 @@ select A.*
     from D02_ATTIVITA A
 order by PROGETTO DESC
 
+select A.*
+    from D02_ATTIVITA A
+order by BUDGET ASC NULLS FIRST
+
+select A.*
+    from D02_ATTIVITA A
+order by BUDGET ASC NULLS LAST
