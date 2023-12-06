@@ -1,0 +1,1 @@
+javascript:var myWindow =window.open('&URL_IMMAGINE.','_blank');
