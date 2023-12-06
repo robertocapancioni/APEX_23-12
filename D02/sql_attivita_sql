@@ -17,3 +17,7 @@ select A.PROGETTO,
        A.DATA_FINE,
        A.DATA_FINE - A.DATA_INIZIO as GIORNI
   from D02_ATTIVITA A
+
+select A.*
+  from D02_ATTIVITA A
+ where PROGETTO = 'Sito Web pubblico'
