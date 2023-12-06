@@ -8,4 +8,12 @@ select ID,
        ASSEGNATO_A,
        COSTO,
        BUDGET
-  from D02_ATTIVITA
+  from D02_ATTIVITA;
+
+
+select A.PROGETTO,
+       A.ATTIVITA,
+       A.DATA_INIZIO,
+       A.DATA_FINE,
+       A.DATA_FINE – A.DATA_INIZIO as GIORNI
+  from D02_ATTIVITA A
