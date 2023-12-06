@@ -39,3 +39,7 @@ select A.*
 select A.*
   from D02_ATTIVITA A
  where BUDGET is not null
+
+update d02_attivita 
+   set budget = null , costo = 100
+ where id = 1
