@@ -17,3 +17,10 @@ group by NAZIONE,SETTORE
 group by NAZIONE
 order by REVENUE_2020 desc nulls last
    FETCH NEXT 5 ROWS ONLY
+
+select NAZIONE,
+         sum(REVENUE_2017/1000000) as REVENUE_2017,
+         sum(REVENUE_2020/1000000) as REVENUE_2020
+    from d04_classifica_ft
+group by NAZIONE
+order by REVENUE_2020 desc
