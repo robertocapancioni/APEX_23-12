@@ -12,7 +12,11 @@ create table d05_tipo_prodotto (
                                    constraint d05_tipo_prodotto_id_pk primary key,
     tipo_prodotto                  varchar2(50 char)
                                    constraint d05_tipo_prodot_tipo_prodo_unq unique not null,
-    gruppo                         varchar2(50 char) not null
+    gruppo                         varchar2(50 char) not null,
+    created                        date not null,
+    created_by                     varchar2(255 char) not null,
+    updated                        date not null,
+    updated_by                     varchar2(255 char) not null
 )
 ;
 
@@ -24,7 +28,11 @@ create table d05_prodotto (
                                    references d05_tipo_prodotto not null,
     prodotto                       varchar2(50 char) not null,
     prezzo_acquisto                number not null,
-    prezzo_vendita                 number not null
+    prezzo_vendita                 number not null,
+    created                        date not null,
+    created_by                     varchar2(255 char) not null,
+    updated                        date not null,
+    updated_by                     varchar2(255 char) not null
 )
 ;
 
@@ -36,7 +44,11 @@ create table d05_cliente (
                                    constraint d05_cliente_id_pk primary key,
     cliente                        varchar2(50 char)
                                    constraint d05_cliente_cliente_unq unique not null,
-    zona                           varchar2(10 char) not null
+    zona                           varchar2(10 char) not null,
+    created                        date not null,
+    created_by                     varchar2(255 char) not null,
+    updated                        date not null,
+    updated_by                     varchar2(255 char) not null
 )
 ;
 
@@ -45,7 +57,11 @@ create table d05_fornitore (
                                    constraint d05_fornitore_id_pk primary key,
     fornitore                      varchar2(50 char)
                                    constraint d05_fornitore_fornitore_unq unique not null,
-    zona                           varchar2(50 char) not null
+    zona                           varchar2(50 char) not null,
+    created                        date not null,
+    created_by                     varchar2(255 char) not null,
+    updated                        date not null,
+    updated_by                     varchar2(255 char) not null
 )
 ;
 
@@ -59,7 +75,11 @@ create table d05_acquisto (
                                    constraint d05_acquisto_prodotto_id_fk
                                    references d05_prodotto not null,
     data                           date not null,
-    quantita                       number not null
+    quantita                       number not null,
+    created                        date not null,
+    created_by                     varchar2(255 char) not null,
+    updated                        date not null,
+    updated_by                     varchar2(255 char) not null
 )
 ;
 
@@ -77,7 +97,11 @@ create table d05_vendita (
                                    constraint d05_vendita_prodotto_id_fk
                                    references d05_prodotto not null,
     data                           date not null,
-    quantita                       number not null
+    quantita                       number not null,
+    created                        date not null,
+    created_by                     varchar2(255 char) not null,
+    updated                        date not null,
+    updated_by                     varchar2(255 char) not null
 )
 ;
 
@@ -85,9 +109,95 @@ create table d05_vendita (
 create index d05_vendita_i1 on d05_vendita (cliente_id);
 create index d05_vendita_i182 on d05_vendita (prodotto_id);
 
+
+-- triggers
+create or replace trigger d05_tipo_prodotto_biu
+    before insert or update 
+    on d05_tipo_prodotto
+    for each row
+begin
+    if inserting then
+        :new.created := sysdate;
+        :new.created_by := coalesce(sys_context('APEX$SESSION','APP_USER'),user);
+    end if;
+    :new.updated := sysdate;
+    :new.updated_by := coalesce(sys_context('APEX$SESSION','APP_USER'),user);
+end d05_tipo_prodotto_biu;
+/
+
+create or replace trigger d05_prodotto_biu
+    before insert or update 
+    on d05_prodotto
+    for each row
+begin
+    if inserting then
+        :new.created := sysdate;
+        :new.created_by := coalesce(sys_context('APEX$SESSION','APP_USER'),user);
+    end if;
+    :new.updated := sysdate;
+    :new.updated_by := coalesce(sys_context('APEX$SESSION','APP_USER'),user);
+end d05_prodotto_biu;
+/
+
+create or replace trigger d05_cliente_biu
+    before insert or update 
+    on d05_cliente
+    for each row
+begin
+    if inserting then
+        :new.created := sysdate;
+        :new.created_by := coalesce(sys_context('APEX$SESSION','APP_USER'),user);
+    end if;
+    :new.updated := sysdate;
+    :new.updated_by := coalesce(sys_context('APEX$SESSION','APP_USER'),user);
+end d05_cliente_biu;
+/
+
+create or replace trigger d05_fornitore_biu
+    before insert or update 
+    on d05_fornitore
+    for each row
+begin
+    if inserting then
+        :new.created := sysdate;
+        :new.created_by := coalesce(sys_context('APEX$SESSION','APP_USER'),user);
+    end if;
+    :new.updated := sysdate;
+    :new.updated_by := coalesce(sys_context('APEX$SESSION','APP_USER'),user);
+end d05_fornitore_biu;
+/
+
+create or replace trigger d05_acquisto_biu
+    before insert or update 
+    on d05_acquisto
+    for each row
+begin
+    if inserting then
+        :new.created := sysdate;
+        :new.created_by := coalesce(sys_context('APEX$SESSION','APP_USER'),user);
+    end if;
+    :new.updated := sysdate;
+    :new.updated_by := coalesce(sys_context('APEX$SESSION','APP_USER'),user);
+end d05_acquisto_biu;
+/
+
+create or replace trigger d05_vendita_biu
+    before insert or update 
+    on d05_vendita
+    for each row
+begin
+    if inserting then
+        :new.created := sysdate;
+        :new.created_by := coalesce(sys_context('APEX$SESSION','APP_USER'),user);
+    end if;
+    :new.updated := sysdate;
+    :new.updated_by := coalesce(sys_context('APEX$SESSION','APP_USER'),user);
+end d05_vendita_biu;
+/
+
 -- load data
  
--- Generated by Quick SQL Venerdì Aprile 13, 2023  05:50:30
+-- Generated by Quick SQL Wednesday December 13, 2023  15:10:51
  
 /*
 tipo prodotto
@@ -120,5 +230,5 @@ vendita
   prodotto_id /nn
   quantita num /nn
 
-# settings = { prefix: "d05", onDelete: "RESTRICT", semantics: "CHAR", drop: true, language: "EN", APEX: true }
+# settings = { prefix: "D05", onDelete: "RESTRICT", semantics: "CHAR", auditCols: true, drop: true, language: "EN", APEX: true }
 */
